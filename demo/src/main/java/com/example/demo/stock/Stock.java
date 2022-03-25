@@ -12,7 +12,7 @@ public class Stock {
             allocationSize = 1
     )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
+            strategy = GenerationType.AUTO,
             generator = "student_sequence"
     )
     private Long id;

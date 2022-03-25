@@ -7,7 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/stocks")
-@CrossOrigin(origins = {"http://localhost:3000/", "https://fierce-retreat-92206.herokuapp.com/"})
+@CrossOrigin(origins = "*")
 public class StockController {
 
     private final StockService stockService;
