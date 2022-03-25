@@ -3,6 +3,9 @@ package com.example.demo.stock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Objects;
@@ -44,10 +47,16 @@ public class StockService {
     }
 
     @Transactional
-    public void updateStock(Long stockId, String name, String ticker, Double price, String opinion){
+    public void updateStock(Long stockId, String headline, String name, String ticker, Double price, String industry, String opinion){
         Stock stock = stockRepository.findStockById(stockId)
                 .orElseThrow(() -> new IllegalStateException(
                         "stock with id " + stockId + " does not exist"));
+
+        if (headline != null &&
+                headline.length() > 0 &&
+                !Objects.equals(stock.getHeadline(), headline)) {
+            stock.setHeadline(headline);
+        }
 
         if (name != null &&
                 name.length() > 0 &&
@@ -66,12 +75,18 @@ public class StockService {
             stock.setPrice(price);
         }
 
+        if (industry != null &&
+                industry.length() > 0 &&
+                !Objects.equals(stock.getIndustry(), industry)) {
+            stock.setIndustry(industry);
+        }
+
         if (opinion != null &&
                 opinion.length() > 0 &&
                 !Objects.equals(stock.getOpinion(), opinion)) {
             stock.setOpinion(opinion);
         }
 
-
     }
+
 }

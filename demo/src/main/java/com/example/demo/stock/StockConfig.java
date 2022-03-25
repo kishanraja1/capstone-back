@@ -13,16 +13,20 @@ public class StockConfig {
     CommandLineRunner commandLineRunner(StockRepository repository){
         return args -> {
             Stock ford = new Stock(
+                    "Ford - Buy",
                     "Ford",
                     "F",
                     16.83,
+                    "Automotive",
                     "sell - dying company"
             );
 
             Stock netflix = new Stock(
+                    "Netflix - Sell",
                     "Netflix",
                     "NFLX",
                     375.71,
+                    "Technology",
                     "buy - making alot of money"
             );
 

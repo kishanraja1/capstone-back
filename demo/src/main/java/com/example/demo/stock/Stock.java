@@ -16,9 +16,11 @@ public class Stock {
             generator = "student_sequence"
     )
     private Long id;
+    private String headline;
     private String name;
     private String ticker;
     private Double price;
+    private String industry;
     private String opinion;
 
 
@@ -26,24 +28,32 @@ public class Stock {
     }
 
     public Stock(Long id,
+                 String headline,
                  String name,
                  String ticker,
                  Double price,
+                 String industry,
                  String opinion) {
         this.id = id;
+        this.headline = headline;
         this.name = name;
         this.ticker = ticker;
         this.price = price;
+        this.industry=industry;
         this.opinion = opinion;
     }
 
-    public Stock(String name,
+    public Stock(String headline,
+                 String name,
                  String ticker,
                  Double price,
+                 String industry,
                  String opinion) {
+        this.headline = headline;
         this.name = name;
         this.ticker = ticker;
         this.price = price;
+        this.industry = industry;
         this.opinion = opinion;
     }
 
@@ -53,6 +63,14 @@ public class Stock {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getHeadline() {
+        return headline;
+    }
+
+    public void setHeadline(String headline) {
+        this.headline = headline;
     }
 
     public String getName() {
@@ -79,6 +97,14 @@ public class Stock {
         this.price = price;
     }
 
+    public String getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry;
+    }
+
     public String getOpinion() {
         return opinion;
     }
@@ -92,9 +118,11 @@ public class Stock {
     public String toString() {
         return "Stock{" +
                 "id=" + id +
+                ", headline='" + headline + '\'' +
                 ", name='" + name + '\'' +
                 ", ticker='" + ticker + '\'' +
                 ", price=" + price +
+                ", industry='" + industry + '\'' +
                 ", opinion='" + opinion + '\'' +
                 '}';
     }
