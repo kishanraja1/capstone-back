@@ -1,9 +1,7 @@
 package com.example.demo.stock;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +20,21 @@ public class StockController {
     @GetMapping
     public List<Stock> getStocks() {
         return stockService.getStocks();
+    }
+
+    @PostMapping
+    public void registerNewStock(@RequestBody Stock stock){
+        stockService.addNewStock(stock);
+    }
+
+    @DeleteMapping(path = "{stockId}")
+    public void deleteStock(@PathVariable("stockId") Long stockId){
+        stockService.deleteStock(stockId);
+    }
+
+    @PutMapping(path = "{stockId}")
+    public void updateStock(@PathVariable(stockId) Long stockId){
+        stockService.updateStock(stockId);
     }
 
 }
