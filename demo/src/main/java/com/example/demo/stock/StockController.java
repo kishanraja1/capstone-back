@@ -33,8 +33,13 @@ public class StockController {
     }
 
     @PutMapping(path = "{stockId}")
-    public void updateStock(@PathVariable(stockId) Long stockId){
-        stockService.updateStock(stockId);
+    public void updateStock(
+            @PathVariable("stockId") Long stockId,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String ticker,
+            @RequestParam(required = false) Double price,
+            @RequestParam(required = false) String opinion){
+        stockService.updateStock(stockId, name, ticker, price, opinion);
     }
 
 }

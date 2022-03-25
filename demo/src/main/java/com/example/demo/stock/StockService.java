@@ -2,8 +2,10 @@ package com.example.demo.stock;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -41,7 +43,35 @@ public class StockService {
             stockRepository.deleteById(stockId);
     }
 
-    public void updateStock(){
+    @Transactional
+    public void updateStock(Long stockId, String name, String ticker, Double price, String opinion){
+        Stock stock = stockRepository.findStockById(stockId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "stock with id " + stockId + " does not exist"));
+
+        if (name != null &&
+                name.length() > 0 &&
+                !Objects.equals(stock.getName(), name)) {
+            stock.setName(name);
+        }
+
+        if (ticker != null &&
+                ticker.length() > 0 &&
+                !Objects.equals(stock.getTicker(), ticker)) {
+            stock.setTicker(ticker);
+        }
+
+        if (price != null &&
+                !Objects.equals(stock.getPrice(), price)) {
+            stock.setPrice(price);
+        }
+
+        if (opinion != null &&
+                opinion.length() > 0 &&
+                !Objects.equals(stock.getOpinion(), opinion)) {
+            stock.setOpinion(opinion);
+        }
+
 
     }
 }

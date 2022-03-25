@@ -12,4 +12,7 @@ public interface StockRepository
 
     @Query("SELECT s FROM Stock s WHERE s.ticker = ?1")
     Optional<Stock> findStockByTicker(String ticker);
+
+    @Query("SELECT s FROM Stock s WHERE s.id = ?1")
+    Optional<Stock> findStockById(Long id);
 }
