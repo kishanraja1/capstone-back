@@ -14,5 +14,5 @@ public interface StockRepository
     Optional<Stock> findStockByTicker(String ticker);
 
     @Query("SELECT s FROM Stock s WHERE s.id = ?1")
-    Optional<Stock> findStockById(Long id);
+    Optional<Stock> findStockById(Long stockId);
 }

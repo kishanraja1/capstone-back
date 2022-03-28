@@ -23,6 +23,11 @@ public class StockController {
         return stockService.getStocks();
     }
 
+    @GetMapping(path = "{stockId}")
+    public void getStock(@PathVariable("stockId") Long stockId){
+        stockService.getStock(stockId);
+    }
+
     @PostMapping
     public void registerNewStock(@RequestBody Stock stock){
         stockService.addNewStock(stock);
@@ -36,13 +41,8 @@ public class StockController {
     @PutMapping(path = "{stockId}")
     public void updateStock(
             @PathVariable("stockId") Long stockId,
-            @RequestParam(required = false) String headline,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String ticker,
-            @RequestParam(required = false) Double price,
-            @RequestParam(required = false) String industry,
-            @RequestParam(required = false) String opinion){
-        stockService.updateStock(stockId, headline, name, ticker, price, industry, opinion);
+            @RequestBody(required = false) Stock stockData){
+            stockService.updateStock(stockId, stockData);
     }
 
 
