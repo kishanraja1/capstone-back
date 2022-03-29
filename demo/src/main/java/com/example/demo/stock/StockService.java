@@ -35,9 +35,6 @@ public class StockService {
     public void addNewStock(Stock stock) {
         Optional<Stock> stockByTicker = stockRepository
                 .findStockByTicker(stock.getTicker());
-        if (stockByTicker.isPresent()){
-            throw new IllegalStateException("stock already exists. Please search to edit");
-        }
         stockRepository.save(stock);
 
         System.out.println(stock);
