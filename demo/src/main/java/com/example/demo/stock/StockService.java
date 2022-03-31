@@ -23,14 +23,7 @@ public class StockService {
         return stockRepository.findAll();
     }
 
-    public void getStock(Long stockId) {
-        boolean stockExists = stockRepository.existsById(stockId);
-        if (!stockExists){
-            throw new IllegalStateException(
-                    "stock with id " + stockId + " does not exist");
-        }
-        stockRepository.findStockById(stockId);
-    }
+
 
     public void addNewStock(Stock stock) {
         Optional<Stock> stockByTicker = stockRepository
